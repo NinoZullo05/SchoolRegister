@@ -5,6 +5,7 @@ import 'package:registro/Pagine/Calendario.dart';
 import 'package:registro/Pagine/HomePage.dart';
 import 'package:registro/Pagine/PCTO.dart';
 import 'package:registro/Pagine/menu.dart';
+import 'package:registro/Palette/Palette.dart';
 import 'package:registro/metodi/Metodi.dart';
 import 'package:registro/Pagine/Widget/HeaderHeight.dart';
 
@@ -78,7 +79,7 @@ class _profiloState extends State<profilo> {
               child: Text(
                 text,
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 16.0.sp,
                   color: Colors.black,
                 ),
               ),
@@ -135,88 +136,19 @@ class _profiloState extends State<profilo> {
                     padding: EdgeInsets.only(left: 10.w, right: 10.w),
                     child: Column(
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Nome:",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.sp,
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "Tommaso",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18.sp,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          height: 10.h,
-                          color: Colors.black,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "Cognome:",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.sp,
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "Cantoni",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18.sp,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          height: 10.h,
-                          color: Colors.black,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "Classe:",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18.sp,
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "4IC",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18.sp,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          height: 10.h,
-                          color: Colors.black,
-                        ),
-                        Row(
+                        Prof("Nome", "Tommaso"),
+                        SizedBox(height: 20.h),
+                        Prof("Cognome", "Cantoni"),
+                        SizedBox(height: 20.h),
+                        Prof("Classe", "4IC"),
+                        SizedBox(height: 20.h),
+                        Prof("Età", "17"),
+                        SizedBox(height: 20.h),
+                        Prof("Data di nascita", "00/00/2005"),
+                        SizedBox(height: 20.h),
+Padding(padding: EdgeInsets.only(left: 10.w),
+
+                        child: Row(
                           children: [
                             Text(
                               'Notifiche',
@@ -239,42 +171,7 @@ class _profiloState extends State<profilo> {
                               ),
                             ),
                           ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'Modalità notte',
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                color: Colors.black,
-                              ),
-                            ),
-
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Spacer(),
-                                    Icon(
-                                      isDarkMode ? Icons.nightlight_round : Icons.wb_sunny_rounded,
-                                      color: isDarkMode ? Colors.yellow : Colors.black,
-                                    ),
-                                    Switch(
-                                      value: isDarkMode,
-                                      onChanged: (value) {
-                                        _toggleTheme();
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                          ],
-                        ),
-
+                        ),),
                       ],
                     ),
                   ),
@@ -332,7 +229,7 @@ class _profiloState extends State<profilo> {
               break;
           }
         },
-        selectedItemColor: Colors.deepPurple,
+        selectedItemColor: blu1,
         unselectedItemColor: Colors.grey,
       ),
     );

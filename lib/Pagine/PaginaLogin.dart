@@ -150,10 +150,11 @@ class _PaginaLoginState extends State<PaginaLogin> {
                       onPressed: _isLoading
                           ? null
                           : () async {
-                        bool isLoggedIn = await _login(
-                          nomeCognomeController.text,
-                          passwordController.text,
-                        );
+                        bool isLoggedIn = true; // Per loggare tolgo il true e i commenti
+                        //await _login(
+                          //nomeCognomeController.text,
+                          //passwordController.text,
+                        //);
                         if (isLoggedIn) {
                           Navigator.pushReplacement(
                             context,
@@ -250,18 +251,15 @@ class _PaginaLoginState extends State<PaginaLogin> {
   }
 
   Future<bool> _login(String username, String password) async {
-  //  var db = Mysql();
-    // final conn = await db.getConnection();
-    // String query = "SELECT * FROM accounts WHERE nome_utente = '$username' AND pass = '$password'";
-    //var results = await conn.query(query);
-    //if(results.isEmpty){
-
-      //await conn.close();
-     // return false;
-    //} else {
-      //await conn.close();
-      //print(results);
+    var db = Mysql();
+    final conn = await db.getConnection();
+    String query = "SELECT * FROM accounts WHERE nome_utente = '$username' AND pass = '$password'";
+    var results = await conn.query(query);
+    if (results.isEmpty) {
+      return false;
+    } else {
       return true;
     }
   }
+}
 

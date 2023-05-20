@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:registro/Pagine/Widget/HeaderHeight.dart';
 import 'package:registro/Palette/Palette.dart';
 
 double _headerHeight = 50.0.h;
@@ -318,4 +317,35 @@ Widget IconaD(String nomeDocente , String Ruolo) {
   );
 }
 
-
+Widget Prof(String testo1, String testo2){
+  return Padding(
+    padding: EdgeInsets.only(left: 10.w, right: 10.w),
+    child: Column(
+      children: [
+    Row(
+    children: [
+    Text(
+    testo1,
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 18.sp,
+      ),
+    ),
+    Expanded(
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Text(
+          testo2,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18.sp,
+          ),
+        ),
+      ),
+    ),
+    ],
+  ),
+  ],
+  ),
+  );
+}

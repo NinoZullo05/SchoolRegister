@@ -1,4 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:registro/Pagine/EventManager.dart';
 import 'package:registro/Pagine/Eventi.dart';
 import 'package:flutter/material.dart';
 import 'package:registro/Pagine/HomePage.dart';
@@ -18,23 +19,35 @@ class _CalendarioState extends State<Calendario> {
   CalendarFormat format = CalendarFormat.month;
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
+  late EventiManager eventiManager;
 
   TextEditingController _eventController = TextEditingController();
 
   @override
   void initState() {
     selectedEvents = {};
+    eventiManager = EventiManager();
+    eventiManager.loadEvents().then((loadedEvents) {
+      setState(() {
+        selectedEvents = loadedEvents;
+      });
+    });
     super.initState();
   }
 
-  List<Object> _getEventsfromDay(DateTime date) {
+  List<Eventi> _getEventsfromDay(DateTime date) {
     return selectedEvents[date] ?? [];
   }
 
   @override
   void dispose() {
+    saveEvents();
     _eventController.dispose();
     super.dispose();
+  }
+
+  void saveEvents() {
+    eventiManager.saveEvents(selectedEvents);
   }
 
   @override
@@ -58,8 +71,6 @@ class _CalendarioState extends State<Calendario> {
             },
             startingDayOfWeek: StartingDayOfWeek.sunday,
             daysOfWeekVisible: true,
-
-            //Day Changed
             onDaySelected: (DateTime selectDay, DateTime focusDay) {
               setState(() {
                 selectedDay = selectDay;
@@ -70,43 +81,39 @@ class _CalendarioState extends State<Calendario> {
             selectedDayPredicate: (DateTime date) {
               return isSameDay(selectedDay, date);
             },
-
             eventLoader: _getEventsfromDay,
-
-            //To style the Calendar
             calendarStyle: CalendarStyle(
               isTodayHighlighted: true,
               selectedDecoration: BoxDecoration(
                 color: Colors.blue,
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5.0.r),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               selectedTextStyle: TextStyle(color: Colors.black),
               todayDecoration: BoxDecoration(
                 color: Colors.purpleAccent,
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5.0.r),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               defaultDecoration: BoxDecoration(
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5.0.r),
+                borderRadius: BorderRadius.circular(5.0),
                 color: Colors.white,
               ),
               defaultTextStyle: TextStyle(color: Colors.black),
               weekendDecoration: BoxDecoration(
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(5.0.r),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               outsideDaysVisible: true,
             ),
-
             headerStyle: HeaderStyle(
               formatButtonVisible: true,
               titleCentered: true,
               formatButtonShowsNext: false,
               formatButtonDecoration: BoxDecoration(
                 color: Colors.blue,
-                borderRadius: BorderRadius.circular(5.0.r),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               formatButtonTextStyle: TextStyle(
                 color: Colors.black,
@@ -118,53 +125,23 @@ class _CalendarioState extends State<Calendario> {
               ),
             ),
           ),
-          ..._getEventsfromDay(selectedDay).map(
-            (Object event) => ListTile(
-              title: Text(
-                (event as Eventi).title,
-              ),
-            ),
-          ),
+          SizedBox(height: 10.0),
           Expanded(
-            child: ListView(
+            child: ListView.separated(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              children: [
-
-                SizedBox(height: 10.h),
-                Text(
-                  "Eventi ricorrenti",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black, fontSize: 20.w, ),
-                ),
-                SizedBox(height: 10.h),
-
-                Padding(
-                  padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                  child: Cont3("Evento 1 : verifica Italiano"),
-                ),
-                SizedBox(height: 10.h),
-                Padding(
-                  padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                  child: Cont3("Evento 2 : verifica Italiano"),
-                ),
-                SizedBox(height: 10.h),
-                Padding(
-                  padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                  child: Cont3("Evento 3 : verifica Italiano"),
-                ),
-                SizedBox(height: 10.h),
-                Padding(
-                  padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                  child: Cont3("Evento 4 : verifica Italiano"),
-                ),
-                SizedBox(height: 10.h),
-                Padding(
-                  padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                  child: Cont3("Evento 5 : verifica Italiano"),
-                ),
-                SizedBox(height: 10.h),
-              ],
+              itemCount: _getEventsfromDay(selectedDay).length,
+              separatorBuilder: (context, index) => SizedBox(height: 10.0),
+              itemBuilder: (context, index) {
+                final event = _getEventsfromDay(selectedDay)[index];
+                final eventDate = selectedDay;
+                return Padding(
+                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Container(
+                    child: Text("${event.title}\n${eventDate.day}/${eventDate.month}/${eventDate.year}"),
+                  ),
+                );
+              },
             ),
           ),
         ],
@@ -193,22 +170,16 @@ class _CalendarioState extends State<Calendario> {
               TextButton(
                 child: Text("Ok"),
                 onPressed: () {
-                  if (_eventController.text.isEmpty) {
-                  } else {
-                    if (selectedEvents[selectedDay] != null) {
-                      selectedEvents[selectedDay]?.add(
-                        Eventi(title: _eventController.text),
-                      );
-                    } else {
-                      selectedEvents[selectedDay] = [
-                        Eventi(title: _eventController.text)
-                      ];
-                    }
+                  if (_eventController.text.isNotEmpty) {
+                    final event = Eventi(title: _eventController.text);
+                    selectedEvents[selectedDay] = [
+                      ..._getEventsfromDay(selectedDay),
+                      event,
+                    ];
+                    setState(() {});
                   }
                   Navigator.pop(context);
                   _eventController.clear();
-                  setState(() {});
-                  return;
                 },
               ),
             ],
@@ -216,62 +187,6 @@ class _CalendarioState extends State<Calendario> {
         ),
         label: Text("Aggiungi evento"),
         icon: Icon(Icons.add),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        items: [
-          It("Calendario", Icons.calendar_month),
-          It("Menù", Icons.menu),
-          It("Home", Icons.home),
-          It("PCTO", Icons.engineering),
-          It("Profilo", Icons.person),
-        ],
-        onTap: (currentIndex) {
-          switch (currentIndex) {
-            case 0:
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Calendario(),
-                ),
-              );
-              break;
-            case 1:
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => menu(),
-                ),
-              );
-              break;
-            case 2:
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomePage(),
-                ),
-              );
-              break;
-            case 3:
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PCTO(),
-                ),
-              );
-              break;
-            case 4:
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => profilo(),
-                ),
-              );
-              break;
-          }
-        },
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
       ),
     );
   }
