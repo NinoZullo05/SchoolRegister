@@ -37,6 +37,7 @@ dependencies:
   liquid_progress_indicator: ^0.4.0
   flutter_svg: ^2.0.5
   path_provider: ^2.0.15
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,14 @@
+/*
+ * Copyright (c) 2023. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan. 
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna. 
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus. 
+ * Vestibulum commodo. Ut rhoncus gravida arcu. 
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:registro/Pagine/HomePage.dart';
 import 'package:registro/Pagine/PasswordDimenticata.dart';
 import 'package:registro/Pagine/User.dart';
@@ -49,7 +58,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                         child: Text(
                           'Log in',
                           textAlign: TextAlign.left,
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontSize: 40.0.w,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
@@ -130,7 +139,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                   CheckboxListTile(
                     title: Text(
                       'Ricordami',
-                      style: TextStyle(
+                      style: GoogleFonts.roboto(
                         fontSize: 15.w,
                         fontWeight: FontWeight.normal,
                         color: Colors.black,
@@ -168,6 +177,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                             builder: (context) {
                               return AlertDialog(
                                 title: Text("Errore di accesso"),
+
                                 content: Text("Le credenziali di accesso sono errate.", style: TextStyle(color: Colors.red),),
                                 actions: [
                                   TextButton(
@@ -250,16 +260,6 @@ class _PaginaLoginState extends State<PaginaLogin> {
     );
   }
 
-  Future<bool> _login(String username, String password) async {
-    var db = Mysql();
-    final conn = await db.getConnection();
-    String query = "SELECT * FROM accounts WHERE nome_utente = '$username' AND pass = '$password'";
-    var results = await conn.query(query);
-    if (results.isEmpty) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+  
 }
 

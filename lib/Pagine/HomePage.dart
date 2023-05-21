@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registro/Pagine/Calendario.dart';
-import 'package:registro/Pagine/InformazioniProfilo.dart';
 import 'package:registro/Pagine/PCTO.dart';
-import 'package:registro/Pagine/PaginaLogin.dart';
 import 'package:registro/Pagine/Profilo.dart';
 import 'package:registro/Pagine/menu.dart';
-import 'package:registro/Palette/Palette.dart';
 import 'package:registro/metodi/Metodi.dart';
+import 'package:registro/Pagine/PaginaLogin.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

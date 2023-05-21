@@ -6,6 +6,7 @@ import 'package:registro/Pagine/Assenze.dart';
 import 'package:registro/Pagine/Calendario.dart';
 import 'package:registro/Pagine/HomePage.dart';
 import 'package:registro/Pagine/PCTO.dart';
+import 'package:registro/Pagine/Pagelle.dart';
 import 'package:registro/Pagine/PaginaLogin.dart';
 import 'package:registro/Pagine/Profilo.dart';
 import 'package:registro/Pagine/Voti.dart';
@@ -153,9 +154,9 @@ class _menuState extends State<menu> {
               padding: _rowPadding,
               child: Row(
                 children: [
-                  //CustomButton(context,azzurrino, 'Note disciplinari', PaginaLogin()),
+                  CustomButton(context,azzurrino, 'Note disciplinari', PaginaLogin()),
                   SizedBox(width: 10.w),
-                 // CustomButton(context, azzurrino, 'Pagelle', PaginaLogin()),
+                 CustomButton(context, azzurrino, 'Pagelle', Pagelle()),
                 ],
               ),
             ),

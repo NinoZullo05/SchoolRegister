@@ -106,7 +106,7 @@ class _profiloState extends State<profilo> {
                 children: [
                   CircleAvatar(
                     radius: 40.r,
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: blu1,
                     child: Icon(
                       Icons.person,
                       size: 50.sp,
