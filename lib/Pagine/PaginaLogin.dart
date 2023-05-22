@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2023. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
- * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan. 
- * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna. 
- * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus. 
- * Vestibulum commodo. Ut rhoncus gravida arcu. 
+ * Copyright (c) 2023. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ import 'package:registro/Pagine/User.dart';
 import 'package:registro/Pagine/Widget/HeaderHeight.dart';
 import 'package:registro/Palette/Palette.dart';
 import 'package:registro/Pagine/Registrati.dart';
-import 'package:registro/mysql/mysql.dart';
+import 'package:registro/mysql/DBMetodi.dart';
 class PaginaLogin extends StatefulWidget {
   const PaginaLogin({Key? key}) : super(key: key);
 
@@ -159,11 +159,11 @@ class _PaginaLoginState extends State<PaginaLogin> {
                       onPressed: _isLoading
                           ? null
                           : () async {
-                        bool isLoggedIn = true; // Per loggare tolgo il true e i commenti
-                        //await _login(
-                          //nomeCognomeController.text,
-                          //passwordController.text,
-                        //);
+                        bool isLoggedIn =
+                        await login(
+                          nomeCognomeController.text,
+                          passwordController.text,
+                        );
                         if (isLoggedIn) {
                           Navigator.pushReplacement(
                             context,
@@ -260,6 +260,6 @@ class _PaginaLoginState extends State<PaginaLogin> {
     );
   }
 
-  
+
 }
 

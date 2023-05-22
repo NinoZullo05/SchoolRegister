@@ -14,14 +14,14 @@ class Pagelle extends StatelessWidget {
     List<Map<String, String>> voti = [
       {"materia": "Italiano", "voto": "6"},
       {"materia": "Matematica", "voto": "7"},
-      {"materia": "Inglese", "voto": "6"},
+      {"materia": "Inglese", "voto": "7"},
       {"materia": "Sistemi e reti", "voto": "6"},
       {"materia": "Tecnologie informatiche", "voto": "6"},
-      {"materia": "Informatica", "voto": "6"},
-      {"materia": "Telecomunicazioni", "voto": "6"},
-      {"materia": "Ed. fisica", "voto": "6"},
-      {"materia": "Religione", "voto": "6"},
-      {"materia": "Ed. civica", "voto": "6"},
+      {"materia": "Informatica", "voto": "8"},
+      {"materia": "Telecomunicazioni", "voto": "8"},
+      {"materia": "Ed. fisica", "voto": "8"},
+      {"materia": "Religione", "voto": "8"},
+      {"materia": "Ed. civica", "voto": "9"},
     ];
 
     return Scaffold(

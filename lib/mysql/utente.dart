@@ -1,2 +1,10 @@
-late bool studente;
-late int id_utente;
+late int idAccount_;
+late String userName_;
+late String password_;
+late bool isStudente_;
+late int idUtente_;
+late String nome_;
+late String cognome_;
+late DateTime? dataDiNascita_;
+late int? idClasse_;
+late String? classe_;
