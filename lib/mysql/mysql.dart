@@ -5,7 +5,7 @@ class Mysql {
 
   Future<MySqlConnection> getConnection() async {
     var settings = ConnectionSettings(
-        host: "abarbati.com",
+        host: "82.52.11.59",
         port: 3306,
         user: "tommaso.cantoni",
         password: "i^nq@2xSUCqq8a",

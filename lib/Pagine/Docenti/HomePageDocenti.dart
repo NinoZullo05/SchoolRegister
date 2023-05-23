@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registro/Pagine/Calendario.dart';
+import 'package:registro/Pagine/Docenti/Studenti.dart';
+import 'package:registro/Pagine/HomePage.dart';
 import 'package:registro/Pagine/PCTO.dart';
 import 'package:registro/Pagine/Profilo.dart';
 import 'package:registro/Pagine/menu.dart';
 import 'package:registro/metodi/Metodi.dart';
 import 'package:registro/Pagine/PaginaLogin.dart';
+import 'package:registro/mysql/Utente.dart';
 
 class HomePageDocenti extends StatefulWidget {
   const HomePageDocenti({Key? key}) : super(key: key);
@@ -15,7 +18,7 @@ class HomePageDocenti extends StatefulWidget {
 }
 
 class _HomePageDocentiState extends State<HomePageDocenti> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 1;
   Brightness _currentBrightness = Brightness.light;
 
   void _onItemTapped(int index) {
@@ -69,7 +72,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Nome utente",
+                      "$nome_ $cognome_",
                       style: TextStyle(
                           fontSize: 20.w,
                           color: Colors.black,
@@ -215,19 +218,18 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         items: [
-          It("Calendario", Icons.calendar_month),
-          It("Menù", Icons.menu),
+          It("Classi", Icons.people_alt_rounded),
           It("Home", Icons.home),
-          It("PCTO", Icons.engineering),
-          It("Profilo", Icons.person),
+          It("Aggiungi", Icons.add_circle),
+
         ],
         onTap: (currentIndex) {
-          switch(currentIndex){
+          switch(currentIndex) {
             case 0:
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Calendario(),
+                  builder: (context) => Studenti(),
                 ),
               );
               break;
@@ -235,30 +237,19 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => menu(),
+                  builder: (context) => HomePageDocenti(),
                 ),
               );
               break;
             case 2:
-            // Do nothing since we're already on the home page
-              break;
-            case 3:
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PCTO(),
+                  builder: (context) => HomePageDocenti(),
                 ),
               );
               break;
-            case 4:
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => profilo(),
-                ),
-              );
-              break;
-          }
+          };
         },
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,

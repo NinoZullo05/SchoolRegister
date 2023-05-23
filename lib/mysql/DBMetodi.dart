@@ -31,8 +31,9 @@ Future<bool> login(String username, String password) async {
     } else {
       results = await conn.query("SELECT * FROM docenti WHERE id_account = '$idAccount_'");
       if(results.isNotEmpty){
+        list = results.toList();
         isStudente_ = false;
-        idUtente_ = results.toList()[0][0];
+        idUtente_ = list[0][0];
         nome_ = list[0][1];
         cognome_ = list[0][2];
         dataDiNascita_ = null;

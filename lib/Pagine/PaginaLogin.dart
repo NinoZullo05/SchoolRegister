@@ -9,13 +9,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:registro/Pagine/Docenti/HomePageDocenti.dart';
 import 'package:registro/Pagine/HomePage.dart';
 import 'package:registro/Pagine/PasswordDimenticata.dart';
-import 'package:registro/Pagine/User.dart';
 import 'package:registro/Pagine/Widget/HeaderHeight.dart';
 import 'package:registro/Palette/Palette.dart';
 import 'package:registro/Pagine/Registrati.dart';
 import 'package:registro/mysql/DBMetodi.dart';
+import 'package:registro/mysql/Utente.dart';
 class PaginaLogin extends StatefulWidget {
   const PaginaLogin({Key? key}) : super(key: key);
 
@@ -164,14 +165,21 @@ class _PaginaLoginState extends State<PaginaLogin> {
                           nomeCognomeController.text,
                           passwordController.text,
                         );
-                        if (isLoggedIn) {
+                        if (isLoggedIn&& isStudente_) {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => HomePage(),
                             ),
                           );
-                        } else {
+                        }else if(isLoggedIn&& !isStudente_){
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePageDocenti(),
+                            ),
+                          );
+                        }else {
                           showDialog(
                             context: context,
                             builder: (context) {
