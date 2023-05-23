@@ -5,7 +5,6 @@ import 'package:registro/Palette/Palette.dart';
 
 double _headerHeight = 50.0.h;
 BottomNavigationBarItem It(String title, IconData icon) {
-
   return BottomNavigationBarItem(
     icon: Icon(icon),
     label: title,
@@ -153,12 +152,12 @@ Widget CustomButton(
 }
 
 Widget ButtonSVG(
-    BuildContext context,
-    Color color,
-    String text,
-    Widget destination,
-    String svgPath,
-    ) {
+  BuildContext context,
+  Color color,
+  String text,
+  Widget destination,
+  String svgPath,
+) {
   return GestureDetector(
     onTap: () {
       Navigator.push(
@@ -181,14 +180,13 @@ Widget ButtonSVG(
         children: [
           Positioned(
             top: 10.h,
-            left  : 5.w,
+            left: 5.w,
             child: Text(
               text,
               style: TextStyle(
                 fontSize: 19.0.sp,
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
-
               ),
             ),
           ),
@@ -208,7 +206,6 @@ Widget ButtonSVG(
                       height: 72.0.h,
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -283,7 +280,7 @@ Widget ContainerArgomenti({
   );
 }
 
-Widget IconaD(String nomeDocente , String Ruolo) {
+Widget IconaD(String nomeDocente, String Ruolo) {
   return Column(
     children: [
       CircleAvatar(
@@ -317,35 +314,100 @@ Widget IconaD(String nomeDocente , String Ruolo) {
   );
 }
 
-Widget Prof(String testo1, String testo2){
+Widget Prof(String testo1, String testo2) {
   return Padding(
     padding: EdgeInsets.only(left: 10.w, right: 10.w),
     child: Column(
       children: [
-    Row(
-    children: [
-    Text(
-    testo1,
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 18.sp,
-      ),
+        Row(
+          children: [
+            Text(
+              testo1,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18.sp,
+              ),
+            ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  testo2,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.sp,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
     ),
-    Expanded(
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: Text(
-          testo2,
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18.sp,
-          ),
+  );
+}
+
+Widget ContainerVoti({
+  required double Voto,
+  required DateTime Data,
+  required String Descrizione,
+  Color? color,
+}) {
+  return Padding(
+    padding: EdgeInsets.only(
+      left: 10.w,
+      right: 10.w,
+      top: 10.h,
+      bottom: 10.h,
+    ),
+    child: Container(
+      width: double.infinity,
+      height: 100.h,
+      decoration: BoxDecoration(
+        color: color ?? Colors.lightGreenAccent,
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+          color: Colors.black,
+          width: 1.0.w,
         ),
       ),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 5.w, right: 5.w),
+            child: Row(
+              children: [
+                Text(
+                  "$Voto",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  "$Data",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 10.h),
+          SizedBox(height: 10.h),
+          Text(
+            Descrizione,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
     ),
-    ],
-  ),
-  ],
-  ),
   );
 }

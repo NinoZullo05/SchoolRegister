@@ -10,6 +10,7 @@ import 'package:registro/Pagine/Argomenti/Religione.dart';
 import 'package:registro/Pagine/Argomenti/SistemiReti.dart';
 import 'package:registro/Pagine/Argomenti/TecnologieInformatiche.dart';
 import 'package:registro/Pagine/Argomenti/Telecomunicazioni.dart';
+import 'package:registro/Pagine/Voti/VInformatica.dart';
 import 'package:registro/Pagine/Widget/HeaderHeight.dart';
 import 'package:registro/metodi/Metodi.dart';
 class Voti extends StatefulWidget {
@@ -103,7 +104,7 @@ class _VotiState extends State<Voti> {
                 children: [
                   ButtonSVG(context, Colors.cyan, "Tecn. \nInf.", TecnologieInformatiche(), "assets/icons/Tecnologie.svg"),
                   SizedBox(width: 10.w),
-                  ButtonSVG(context, Colors.cyan, "Informatica",  Informatica(), "assets/icons/Informatica.dart.svg"),
+                  ButtonSVG(context, Colors.cyan, "Informatica",  VInformatica(), "assets/icons/Informatica.dart.svg"),
                 ],
               ),
             ),
