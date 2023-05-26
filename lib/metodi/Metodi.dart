@@ -369,6 +369,7 @@ Widget ContainerVoti({
         border: Border.all(
           color: Colors.black,
           width: 1.0.w,
+            
         ),
       ),
       child: Column(

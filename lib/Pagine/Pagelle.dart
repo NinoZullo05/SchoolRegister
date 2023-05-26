@@ -17,7 +17,7 @@ class Pagelle extends StatelessWidget {
       {"materia": "Telecomunicazioni", "voto": "6"},
       {"materia": "Ed. fisica", "voto": "6"},
       {"materia": "Religione", "voto": "6"},
-      {"materia": "Ed. civica", "voto": "6"},
+      {"materia": "Ed. civica", "voto": "9"},
     ];
 
     return Scaffold(
@@ -37,15 +37,21 @@ class Pagelle extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Pagelle",
-              style: GoogleFonts.roboto(
-                color: Colors.black,
-                fontSize: 20.sp,
-                fontWeight: FontWeight.bold,
+            Center(
+              child:  Text(
+                "Pagelle",
+                style: GoogleFonts.roboto(
+                  color: Colors.black,
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
+
             SizedBox(height: 10.h),
+            Center(
+              child: ,
+            )
             for (var voto in voti)
               Row(
                 children: [

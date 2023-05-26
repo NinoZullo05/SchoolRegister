@@ -38,7 +38,7 @@ class _VInformaticaState extends State<VInformatica> {
              SizedBox(height: 100.h),
              Row(
                children: [
-                 ContainerVoti(Voto: 6, Data: DateTime(2023[12, 12]), Descrizione: "Verifica su Javascript")
+                 //ContainerVoti(Voto: 6, Data: DateTime(), Descrizione: "Verifica su Javascript")
                ],
              )
           ],
@@ -51,9 +51,9 @@ class _VInformaticaState extends State<VInformatica> {
 
 void Wvoti(){
   var voti = getVoti();
-  for(var voto in voti){
+  //for(var voto in voti){
 
-  }
+  //}
 }
 
 

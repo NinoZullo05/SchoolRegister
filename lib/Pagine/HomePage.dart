@@ -6,6 +6,7 @@ import 'package:registro/Pagine/Profilo.dart';
 import 'package:registro/Pagine/menu.dart';
 import 'package:registro/metodi/Metodi.dart';
 import 'package:registro/Pagine/PaginaLogin.dart';
+import 'package:registro/mysql/Utente.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -69,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Nome utente",
+                      "$nome_ " "$cognome_",
                       style: TextStyle(
                           fontSize: 20.w,
                           color: Colors.black,
