@@ -38,13 +38,17 @@ dependencies:
   flutter_svg: ^2.0.5
   path_provider: ^2.0.15
   google_fonts: ^4.0.4
+  intl: ^0.18.1
+  flutter_local_notifications: ^14.1.0
+  permission_handler: ^10.2.0
+  day_night_switcher: 0.2.0+1
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flare_flutter: ^3.0.0
   table_calendar: ^3.0.9
-
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

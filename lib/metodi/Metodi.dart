@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:registro/Palette/Palette.dart';
+import 'package:intl/intl.dart';
+
 
 double _headerHeight = 50.0.h;
 BottomNavigationBarItem It(String title, IconData icon) {
   return BottomNavigationBarItem(
     icon: Icon(icon),
+
     label: title,
   );
 }
@@ -353,6 +356,13 @@ Widget ContainerVoti({
   required String Descrizione,
   Color? color,
 }) {
+  final formattedDate = DateFormat('yyyy-MM-dd').format(Data);
+  final tipoVoto = Descrizione == 'Pratico'
+      ? 'Pratico'
+      : Descrizione == 'Scritto'
+      ? 'Scritto'
+      : 'Orale';
+
   return Padding(
     padding: EdgeInsets.only(
       left: 10.w,
@@ -369,7 +379,6 @@ Widget ContainerVoti({
         border: Border.all(
           color: Colors.black,
           width: 1.0.w,
-            
         ),
       ),
       child: Column(
@@ -388,7 +397,7 @@ Widget ContainerVoti({
                 ),
                 Spacer(),
                 Text(
-                  "$Data",
+                  "$formattedDate",
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
@@ -401,7 +410,7 @@ Widget ContainerVoti({
           SizedBox(height: 10.h),
           SizedBox(height: 10.h),
           Text(
-            Descrizione,
+            tipoVoto,
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w700,

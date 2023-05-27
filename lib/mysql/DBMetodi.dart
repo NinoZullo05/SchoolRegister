@@ -39,6 +39,7 @@ Future<bool> login(String username, String password) async {
         dataDiNascita_ = null;
         classe_ = null;
       } else {
+        print(getDocenti());
         await conn.close();
         return false;
       }
@@ -58,7 +59,7 @@ formato:
 - String cognome
 - String materia
  */
-Future<List?> getVoti() async {
+Future<List<Map<String, dynamic>>?> getVoti() async {
   var db = Mysql();
   final conn = await db.getConnection();
   var results = await conn.query(
@@ -68,8 +69,10 @@ Future<List?> getVoti() async {
           "INNER JOIN docenti ON assegnazioni.id_docente = docenti.id_docente "
           "INNER JOIN materie ON assegnazioni.id_materia = materie.id_materia "
           "WHERE voti.id_studente = '$idUtente_'");
-  return results.toList();
+
+  return results.map((row) => row.fields).toList();
 }
+
 
 void addVoto(int voto, String tipo, DateTime data_inserimento, int id_studente,) async {
   var db = Mysql();
@@ -129,6 +132,18 @@ Future<List?> getCompiti() async {
           "INNER JOIN docenti ON assegnazioni.id_docente = docenti.id_docente "
           "INNER JOIN materie ON assegnazioni.id_materia = materie.id_materia "
           "WHERE assegnazioni.id_classe = '$idClasse_'");
+  return results.toList();
+}
+
+Future<List?> getDocenti() async {
+  var db = Mysql();
+  final conn = await db.getConnection();
+  var results = await conn.query(
+      "SELECT  id_assegnazioni, nome, cognome, nome_materia"
+      "FROM assegnazioni "
+      "INNER JOIN docenti ON assegnazioni.id_docente = docenti.id_docente "
+      "INNER JOIN materie ON assegnazioni.id_materia = materie.id_materia "
+      "WHERE assegnazioni.id_classe = '$idClasse_'");
   return results.toList();
 }
 

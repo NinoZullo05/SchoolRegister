@@ -48,45 +48,54 @@ class Pagelle extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 10.h),
             Center(
-              child: ,
-            )
-            for (var voto in voti)
-              Row(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+
                 children: [
-                  Container(
-                    width: 150.w,
-                    height: 40.h,
-                    color: Colors.grey,
-                    child: Center(
-                      child: Text(
-                        voto["materia"]!,
-                        style: GoogleFonts.roboto(
+
+                  SizedBox(height: 10.h),
+                  for (var voto in voti)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+                      children: [
+                        Container(
+                          width: 150.w,
+                          height: 40.h,
+                          color: Colors.grey,
+                          child: Center(
+                            child: Text(
+                              voto["materia"]!,
+                              style: GoogleFonts.roboto(
+                                color: Colors.white,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10.w),
+                        Container(
+                          width: 80.w,
+                          height: 40.h,
                           color: Colors.white,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                          child: Center(
+                            child: Text(
+                              voto["voto"]!,
+                              style: GoogleFonts.roboto(
+                                color: Colors.black,
+                                fontSize: 16.sp,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-                  SizedBox(width: 10.w),
-                  Container(
-                    width: 80.w,
-                    height: 40.h,
-                    color: Colors.white,
-                    child: Center(
-                      child: Text(
-                        voto["voto"]!,
-                        style: GoogleFonts.roboto(
-                          color: Colors.black,
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
+            ),
+
           ],
         ),
       ),

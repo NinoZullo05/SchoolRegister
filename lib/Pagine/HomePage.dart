@@ -7,6 +7,7 @@ import 'package:registro/Pagine/menu.dart';
 import 'package:registro/metodi/Metodi.dart';
 import 'package:registro/Pagine/PaginaLogin.dart';
 import 'package:registro/mysql/Utente.dart';
+import 'package:day_night_switcher/day_night_switcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 2;
   Brightness _currentBrightness = Brightness.light;
+  bool _isDarkMode = false;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -27,10 +29,10 @@ class _HomePageState extends State<HomePage> {
 
   void _toggleTheme() {
     setState(() {
-      _currentBrightness =
-      _currentBrightness == Brightness.light ? Brightness.dark : Brightness.light;
+      _currentBrightness = _isDarkMode ? Brightness.dark : Brightness.light;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +40,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Home Page'),
         actions: [
-          IconButton(
-            icon: _currentBrightness == Brightness.light
-                ? Icon(Icons.nightlight_round)
-                : Icon(Icons.wb_sunny),
-            onPressed: _toggleTheme,
+          DayNightSwitcher(
+            isDarkModeEnabled: _isDarkMode,
+            onStateChanged: (isDarkModeEnabled) {
+              setState(() {
+                _isDarkMode = isDarkModeEnabled;
+              });
+              _toggleTheme();
+            },
           ),
           IconButton(
             icon: Icon(Icons.exit_to_app),

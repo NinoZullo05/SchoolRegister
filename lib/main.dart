@@ -32,13 +32,13 @@ class _MyAppState extends State<MyApp> {
           title: 'Registro elettronico',
           theme: ThemeData(
 
-              primarySwatch: coloreStile,
+            primarySwatch: coloreStile,
             textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
           home: Scaffold(
             body: Stack(
               children: const [
-                  PaginaLogin(),
+                PaginaLogin(),
               ],
             ),
           ),

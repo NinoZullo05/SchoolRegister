@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registro/Pagine/Calendario.dart';
@@ -8,9 +7,10 @@ import 'package:registro/Pagine/menu.dart';
 import 'package:registro/Palette/Palette.dart';
 import 'package:registro/metodi/Metodi.dart';
 import 'package:registro/Pagine/Widget/HeaderHeight.dart';
+import 'package:registro/mysql/Utente.dart';
+import 'package:intl/intl.dart';
 
 class profilo extends StatefulWidget {
-
   const profilo({Key? key}) : super(key: key);
 
   @override
@@ -18,6 +18,16 @@ class profilo extends StatefulWidget {
 }
 
 class _profiloState extends State<profilo> {
+  int calcolaEta(DateTime dataDiNascita) {
+  DateTime dataCorrente = DateTime.now();
+  int eta = dataCorrente.year - dataDiNascita.year;
+  if (dataCorrente.month < dataDiNascita.month ||
+  (dataCorrente.month == dataDiNascita.month && dataCorrente.day < dataDiNascita.day)) {
+  eta--;
+  }
+  return eta;
+  }
+
   void _toggleTheme() {
     setState(() {
       isDarkMode = !isDarkMode;
@@ -115,9 +125,9 @@ class _profiloState extends State<profilo> {
                   ),
                   SizedBox(height: 10.h),
                   Text(
-                    'Nome Cognome',
+                    '$nome_ $cognome_',
                     style: TextStyle(
-                      fontSize: 12.sp,
+                      fontSize: 19.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
@@ -136,42 +146,71 @@ class _profiloState extends State<profilo> {
                     padding: EdgeInsets.only(left: 10.w, right: 10.w),
                     child: Column(
                       children: [
-                        Prof("Nome", "Tommaso"),
+                        Prof("Nome", "$nome_"),
                         SizedBox(height: 20.h),
-                        Prof("Cognome", "Cantoni"),
+                        Prof("Cognome", "$cognome_"),
                         SizedBox(height: 20.h),
-                        Prof("Classe", "4IC"),
+                        Prof("Classe", "$classe_"),
                         SizedBox(height: 20.h),
-                        Prof("Età", "17"),
-                        SizedBox(height: 20.h),
-                        Prof("Data di nascita", "00/00/2005"),
-                        SizedBox(height: 20.h),
-Padding(padding: EdgeInsets.only(left: 10.w),
-
-                        child: Row(
-                          children: [
-                            Text(
-                              'Notifiche',
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                color: Colors.black,
+                      Prof("Età", calcolaEta(dataDiNascita_!).toString()),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 20.h),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "Data di nascita",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18.sp,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Text(
+                                        DateFormat('dd/MM/yyyy').format(dataDiNascita_!),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18.sp,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Checkbox(
-                                  value: isAttive,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      isAttive = value!;
-                                    });
-                                  },
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 20.h),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.w),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Notifiche',
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  color: Colors.black,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),),
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Checkbox(
+                                    value: isAttive,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        isAttive = value!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),

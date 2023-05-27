@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registro/Pagine/Calendario.dart';
 import 'package:registro/Pagine/Docenti/Studenti.dart';
-import 'package:registro/Pagine/HomePage.dart';
-import 'package:registro/Pagine/PCTO.dart';
-import 'package:registro/Pagine/Profilo.dart';
-import 'package:registro/Pagine/menu.dart';
+
 import 'package:registro/metodi/Metodi.dart';
 import 'package:registro/Pagine/PaginaLogin.dart';
 import 'package:registro/mysql/Utente.dart';
-
+import 'package:day_night_switcher/day_night_switcher.dart';
 class HomePageDocenti extends StatefulWidget {
   const HomePageDocenti({Key? key}) : super(key: key);
 
@@ -36,15 +32,25 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
 
   @override
   Widget build(BuildContext context) {
+    bool _isDarkMode = false;
+    void _toggleTheme() {
+      setState(() {
+        _currentBrightness = _isDarkMode ? Brightness.dark : Brightness.light;
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page Docenti'),
+        title: Text('Home Page '),
         actions: [
-          IconButton(
-            icon: _currentBrightness == Brightness.light
-                ? Icon(Icons.nightlight_round)
-                : Icon(Icons.wb_sunny),
-            onPressed: _toggleTheme,
+          DayNightSwitcher(
+            isDarkModeEnabled: _isDarkMode,
+            onStateChanged: (isDarkModeEnabled) {
+              setState(() {
+                _isDarkMode = isDarkModeEnabled;
+              });
+              _toggleTheme();
+            },
           ),
           IconButton(
             icon: Icon(Icons.exit_to_app),

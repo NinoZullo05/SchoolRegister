@@ -19,6 +19,19 @@ class VInformatica extends StatefulWidget {
 }
 
 class _VInformaticaState extends State<VInformatica> {
+  List<Map<String, dynamic>>? voti;
+
+  @override
+  void initState() {
+    super.initState();
+    getVoti().then((value) {
+      setState(() {
+        voti = value;
+        print(voti);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,28 +45,33 @@ class _VInformaticaState extends State<VInformatica> {
           ),
         ),
       ),
+      body: Column(
+        children: [
+          SizedBox(height: 100.h),
+          Expanded(
+            child: ListView.builder(
+              itemCount: voti?.length ?? 0,
+              itemBuilder: (context, index) {
+                final voto = voti![index];
+                final votoString = voto['voto'].toString();
+                final dataString = voto['data_inserimento'].toString();
+                final descrizione = voto['descrizione'].toString();
 
-        body: Column(
-          children: [
-             SizedBox(height: 100.h),
-             Row(
-               children: [
-                 //ContainerVoti(Voto: 6, Data: DateTime(), Descrizione: "Verifica su Javascript")
-               ],
-             )
-          ],
-        ),
+                final votoDouble = double.tryParse(votoString) ?? 0.0;
+                final data = DateTime.tryParse(dataString) ?? DateTime.now();
 
-
+                return ContainerVoti(
+                  Voto: votoDouble,
+                  Data: data,
+                  Descrizione: descrizione,
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
-}
-
-void Wvoti(){
-  var voti = getVoti();
-  //for(var voto in voti){
-
-  //}
 }
 
 
