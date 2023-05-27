@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:registro/Pagine/Docenti/HomePageDocenti.dart';
+import 'package:registro/Pagine/Docenti/OrarioDocenti.dart';
 import 'package:registro/metodi/Metodi.dart';
-class Studenti extends StatefulWidget {
-  const Studenti({Key? key}) : super(key: key);
+class Classi extends StatefulWidget {
+  const Classi({Key? key}) : super(key: key);
 
   @override
-  State<Studenti> createState() => _StudentiState();
+  State<Classi> createState() => _ClassiState();
 }
 
-class _StudentiState extends State<Studenti> {
+class _ClassiState extends State<Classi> {
   int _selectedIndex = 0;
 
   @override
@@ -30,7 +31,7 @@ class _StudentiState extends State<Studenti> {
         items: [
           It("Classi", Icons.people_alt_rounded),
           It("Home", Icons.home),
-          It("Aggiungi", Icons.add_circle),
+          It("Orari", Icons.lock_clock),
 
         ],
         onTap: (currentIndex) {
@@ -39,7 +40,7 @@ class _StudentiState extends State<Studenti> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Studenti(),
+                  builder: (context) => Classi(),
                 ),
               );
               break;
@@ -55,7 +56,7 @@ class _StudentiState extends State<Studenti> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePageDocenti(),
+                  builder: (context) => OrarioDocenti(),
                 ),
               );
               break;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:registro/Pagine/Docenti/Studenti.dart';
+import 'package:registro/Pagine/Docenti/OrarioDocenti.dart';
+import 'package:registro/Pagine/Docenti/Classi.dart';
 
 import 'package:registro/metodi/Metodi.dart';
 import 'package:registro/Pagine/PaginaLogin.dart';
@@ -226,7 +227,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
         items: [
           It("Classi", Icons.people_alt_rounded),
           It("Home", Icons.home),
-          It("Aggiungi", Icons.add_circle),
+          It("Orari", Icons.lock_clock),
 
         ],
         onTap: (currentIndex) {
@@ -235,7 +236,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Studenti(),
+                  builder: (context) => Classi(),
                 ),
               );
               break;
@@ -251,7 +252,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePageDocenti(),
+                  builder: (context) => OrarioDocenti(),
                 ),
               );
               break;
