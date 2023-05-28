@@ -83,7 +83,7 @@ class _ClassiState extends State<Classi> {
           ),
           SizedBox(height: 10.h),
           Text(
-            "nome_ + cognome_",
+            "$nome_ $cognome_",
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,

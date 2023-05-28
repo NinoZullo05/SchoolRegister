@@ -43,15 +43,12 @@ class _SelectedClassState extends State<SelectedClass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Selected Class'),
+        title: Text('${widget.className}'),
       ),
       body: Center(
         child: Column(
           children: [
-            Text(
-              'Classe: ${widget.className} ',
-              style: TextStyle(fontSize: 24.sp, color: Colors.black),
-            ),
+            
             SizedBox(height: 20.h),
             Text(
               'Studenti:',

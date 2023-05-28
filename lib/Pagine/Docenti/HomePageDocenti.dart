@@ -6,6 +6,7 @@ import 'package:registro/metodi/Metodi.dart';
 import 'package:registro/Pagine/PaginaLogin.dart';
 import 'package:registro/mysql/Utente.dart';
 import 'package:day_night_switcher/day_night_switcher.dart';
+
 class HomePageDocenti extends StatefulWidget {
   const HomePageDocenti({Key? key}) : super(key: key);
 
@@ -22,11 +23,11 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
       _selectedIndex = index;
     });
   }
-
   void _toggleTheme() {
     setState(() {
-      _currentBrightness =
-      _currentBrightness == Brightness.light ? Brightness.dark : Brightness.light;
+      _currentBrightness = _currentBrightness == Brightness.light
+          ? Brightness.dark
+          : Brightness.light;
     });
   }
 
@@ -78,7 +79,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "$nome_ $cognome_",
+                      "$nome_", //TODO : ERRORE QUI
                       style: TextStyle(
                           fontSize: 20.w,
                           color: Colors.black,
@@ -104,7 +105,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                 children: [
                   Padding(
                     padding:
-                    EdgeInsets.only(left: 10.w, top: 10.w, bottom: 5.h),
+                        EdgeInsets.only(left: 10.w, top: 10.w, bottom: 5.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -117,7 +118,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                           child: Text(
                             "0",
                             style:
-                            TextStyle(fontSize: 15.w, color: Colors.black),
+                                TextStyle(fontSize: 15.w, color: Colors.black),
                           ),
                         ),
                       ],
@@ -133,7 +134,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                   ),
                   Padding(
                     padding:
-                    EdgeInsets.only(left: 25.w, top: 10.w, bottom: 5.h),
+                        EdgeInsets.only(left: 25.w, top: 10.w, bottom: 5.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -146,7 +147,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                           child: Text(
                             "12",
                             style:
-                            TextStyle(fontSize: 15.w, color: Colors.black),
+                                TextStyle(fontSize: 15.w, color: Colors.black),
                           ),
                         ),
                       ],
@@ -162,7 +163,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                   ),
                   Padding(
                     padding:
-                    EdgeInsets.only(left: 10.w, top: 10.w, bottom: 5.h),
+                        EdgeInsets.only(left: 10.w, top: 10.w, bottom: 5.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -175,7 +176,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                           child: Text(
                             "35",
                             style:
-                            TextStyle(fontSize: 15.w, color: Colors.black),
+                                TextStyle(fontSize: 15.w, color: Colors.black),
                           ),
                         )
                       ],
@@ -193,7 +194,8 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                   SizedBox(width: 10.w),
                   Cont1(Colors.orange, Icons.no_accounts_sharp, "Assenze"),
                   SizedBox(width: 10.w),
-                  Cont1(Colors.yellow, Icons.person_2_outlined, "Argomenti.dart"),
+                  Cont1(
+                      Colors.yellow, Icons.person_2_outlined, "Argomenti.dart"),
                   SizedBox(width: 10.w),
                   Cont1(Colors.green, Icons.edit, "   Note"),
                   SizedBox(width: 10.w),
@@ -202,7 +204,7 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                 ],
               ),
             ),
-            SizedBox(height : 20.h),
+            SizedBox(height: 20.h),
             Expanded(
               child: ListView(
                 scrollDirection: Axis.vertical,
@@ -227,10 +229,9 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
           It("Classi", Icons.people_alt_rounded),
           It("Home", Icons.home),
           It("Orari", Icons.lock_clock),
-
         ],
         onTap: (currentIndex) {
-          switch(currentIndex) {
+          switch (currentIndex) {
             case 0:
               Navigator.push(
                 context,
@@ -255,7 +256,8 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
                 ),
               );
               break;
-          };
+          }
+          ;
         },
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
@@ -263,4 +265,3 @@ class _HomePageDocentiState extends State<HomePageDocenti> {
     );
   }
 }
-
