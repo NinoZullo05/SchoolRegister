@@ -19,9 +19,9 @@ class _ClassiState extends State<Classi> {
   int _selectedIndex = 0;
   final double _headerHeight = 100.h;
   final EdgeInsetsGeometry _rowPadding =
-      EdgeInsets.only(top: 30.h, left: 15.h, right: 10.h);
+  EdgeInsets.only(top: 30.h, left: 15.h, right: 10.h);
 
-  List<String> classList = ['4IC', '5IC', '2LA'];
+  List<String> classList = ['4IC', '5IC', '5IB', '2LA'];
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class _ClassiState extends State<Classi> {
           ),
           SizedBox(height: 10.h),
           Text(
-            "Nome Cognome",
+            "Nome COgnome",
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
@@ -78,20 +78,35 @@ class _ClassiState extends State<Classi> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: classList.length,
+              itemCount: (classList.length / 2).ceil(),
               itemBuilder: (BuildContext context, int index) {
+                final int firstClassIndex = index * 2;
+                final int secondClassIndex = firstClassIndex + 1;
+
                 return Padding(
                   padding: _rowPadding,
                   child: Row(
                     children: [
-                      ButtonSVG(
-                        context,
-                        Colors.white,
-                        classList[index],
-                        SelectedClass(),
-                        'assets/icons/${classList[index]}.svg',
+                      Expanded(
+                        child: ButtonSVG(
+                          context,
+                          Colors.white,
+                          classList[firstClassIndex],
+                          SelectedClass(),
+                          'assets/icons/${classList[firstClassIndex]}.svg',
+                        ),
                       ),
                       SizedBox(width: 10),
+                      if (secondClassIndex < classList.length)
+                        Expanded(
+                          child: ButtonSVG(
+                            context,
+                            Colors.white,
+                            classList[secondClassIndex],
+                            SelectedClass(),
+                            'assets/icons/${classList[secondClassIndex]}.svg',
+                          ),
+                        ),
                     ],
                   ),
                 );
