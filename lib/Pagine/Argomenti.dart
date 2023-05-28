@@ -11,8 +11,8 @@ import 'package:registro/Pagine/Argomenti/SistemiReti.dart';
 import 'package:registro/Pagine/Argomenti/TecnologieInformatiche.dart';
 import 'package:registro/Pagine/Argomenti/Telecomunicazioni.dart';
 import 'package:registro/Pagine/Widget/HeaderHeight.dart';
-import 'package:registro/Palette/Palette.dart';
 import 'package:registro/metodi/Metodi.dart';
+import 'package:registro/mysql/Utente.dart';
 class Argomenti extends StatefulWidget {
   const Argomenti({Key? key}) : super(key: key);
 
@@ -58,7 +58,7 @@ class _ArgomentiState extends State<Argomenti> {
             ),
             SizedBox(height: 10.h),
             Text(
-              'Nome Cognome',
+              '$nome_ $cognome_',
               style: TextStyle(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
