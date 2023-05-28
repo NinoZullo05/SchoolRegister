@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:registro/Pagine/Docenti/OrarioDocenti.dart';
 import 'package:registro/Pagine/Docenti/Classi.dart';
-
 import 'package:registro/metodi/Metodi.dart';
 import 'package:registro/Pagine/PaginaLogin.dart';
 import 'package:registro/mysql/Utente.dart';

@@ -6,6 +6,8 @@ import 'package:registro/Pagine/Docenti/OrarioDocenti.dart';
 import 'package:registro/Pagine/Docenti/SelectedClass.dart';
 import 'package:registro/Pagine/Widget/HeaderHeight.dart';
 import 'package:registro/metodi/Metodi.dart';
+import 'package:registro/mysql/DBMetodi.dart';
+import 'package:registro/mysql/Mysql.dart';
 import 'package:registro/mysql/utente.dart';
 
 class Classi extends StatefulWidget {
@@ -21,14 +23,35 @@ class _ClassiState extends State<Classi> {
   final EdgeInsetsGeometry _rowPadding =
   EdgeInsets.only(top: 30.h, left: 15.h, right: 10.h);
 
-  List<String> classList = ['4IC', '5IC', '5IB', '2LA'];
+  List<Map<String, dynamic>> classList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchClassi();
+  }
+
+  Future<void> fetchClassi() async {
+    try {
+      List<Map<String, dynamic>>? classListData = await getClassi(1); // devo mettere l'id Del max
+      if (classListData != null) {
+        setState(() {
+          classList = classListData ?? [];
+        });
+      }
+    } catch (e) {
+      print("Errore");
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Classi",
+          "Classi Docente",
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -60,7 +83,7 @@ class _ClassiState extends State<Classi> {
           ),
           SizedBox(height: 10.h),
           Text(
-            "Nome COgnome",
+            "nome_ + cognome_",
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
@@ -78,36 +101,17 @@ class _ClassiState extends State<Classi> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: (classList.length / 2).ceil(),
+              itemCount: classList.length,
               itemBuilder: (BuildContext context, int index) {
-                final int firstClassIndex = index * 2;
-                final int secondClassIndex = firstClassIndex + 1;
-
+                final className = classList[index]['nome_classe'];
                 return Padding(
                   padding: _rowPadding,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ButtonSVG(
-                          context,
-                          Colors.white,
-                          classList[firstClassIndex],
-                          SelectedClass(),
-                          'assets/icons/${classList[firstClassIndex]}.svg',
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      if (secondClassIndex < classList.length)
-                        Expanded(
-                          child: ButtonSVG(
-                            context,
-                            Colors.white,
-                            classList[secondClassIndex],
-                            SelectedClass(),
-                            'assets/icons/${classList[secondClassIndex]}.svg',
-                          ),
-                        ),
-                    ],
+                  child: ButtonSVG(
+                    context,
+                    Colors.white,
+                    className,
+                    SelectedClass(className: className),
+                    'assets/icons/$className.svg',
                   ),
                 );
               },
