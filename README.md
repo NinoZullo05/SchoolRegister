@@ -1,18 +1,29 @@
-LessonLog - Registro Elettronico
-LessonLog è un registro elettronico sviluppato per l'ambito scolastico. Questo progetto offre un'interfaccia mobile per gli studenti e gli insegnanti per gestire e monitorare le informazioni scolastiche in modo efficiente.
+# 📚 LessonLog - Electronic Register
 
-Descrizione del Progetto
-LessonLog è stato sviluppato come un'applicazione mobile disponibile per i sistemi operativi Android e iOS ( ma non solo). Il progetto si basa su un database per memorizzare tutti i dati pertinenti. Gli utenti possono accedere all'applicazione utilizzando un nome utente e una password.
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=flutter&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
-Gli studenti possono accedere a informazioni riguardanti il loro profilo e tenere traccia di eventi importanti tramite un calendario. Possono anche registrare le proprie assenze, annotazioni, argomenti trattati, voti e note disciplinari. Le pagelle, suddivise per quadrimestri, mostrano i voti per ogni materia.
+**LessonLog** is an electronic register developed for the school environment. This project offers a mobile interface for both students and teachers to efficiently manage and monitor school-related information.
 
-Gli insegnanti possono visualizzare le classi in cui insegnano e gli studenti associati a ciascuna classe. Possono registrare assenze, giustificare assenze, inserire annotazioni, argomenti trattati, voti e note disciplinari per gli studenti.
+## 📖 Project Description
 
-Tecnologie utilizzate
-Flutter: Flutter è un framework open-source sviluppato da Google per la creazione di app native per diverse piattaforme. È stato utilizzato per lo sviluppo dell'interfaccia utente cross-platform dell'app LessonLog, consentendo una rapida e semplice creazione di un'app mobile per Android e iOS.
+LessonLog is a mobile application available for both Android and iOS platforms (and more). The project is built on a database to store all relevant data. Users can log in to the application using a username and password.
 
-SQL (phpMyAdmin): SQL è il linguaggio di interrogazione strutturato utilizzato per gestire il database di LessonLog. Il database è stato gestito tramite phpMyAdmin, un'applicazione web basata su PHP che offre un'interfaccia grafica per l'amministrazione dei database MySQL. PhpMyAdmin semplifica la creazione, la modifica e la gestione dei dati all'interno del database utilizzato da LessonLog.
+### 🧑‍🎓 Student Features:
+- View personal profile information.
+- Track important events via the calendar.
+- Record absences, annotations, topics covered, grades, and disciplinary notes.
+- Report cards, split by terms, showing grades for each subject.
 
-GitHub: GitHub è una piattaforma di hosting per repository Git che consente di ospitare, condividere e collaborare su progetti software. È stato utilizzato per ospitare il repository di LessonLog, facilitando il controllo delle versioni del codice e il lavoro di squadra tra i membri del progetto.
+### 🧑‍🏫 Teacher Features:
+- View the classes they teach and associated students.
+- Record absences, justify absences, insert annotations, topics covered, grades, and disciplinary notes for students.
 
-Figma: Figma è uno strumento di progettazione e prototipazione delle interfacce utente basato sul web. È stato utilizzato per la creazione del design dell'interfaccia utente di LessonLog, consentendo ai progettisti di collaborare e creare prototipi interattivi per testare e condividere l'aspetto e l'esperienza dell'app.
+## 🛠️ Technologies Used
+
+- **Flutter**: Flutter is an open-source framework developed by Google for creating native apps on multiple platforms. It was used to develop the cross-platform user interface of LessonLog, allowing fast and easy creation of mobile apps for both Android and iOS.
+  
+- **SQL (phpMyAdmin)**: SQL is the structured query language used to manage the LessonLog database. The database is managed via phpMyAdmin, a web application built in PHP that provides a graphical interface for managing MySQL databases. PhpMyAdmin simplifies the creation, editing, and management of data within LessonLog's database.
+
+- **GitHub**: GitHub is a hosting platform for Git repositories, enabling code hosting, sharing, and collaboration on software projects. It was used to host the LessonLog repository, facilitating version control and teamwork among project members.
+
+- **Figma**: Figma is a web-based interface design and prototyping tool. It was used to design the user interface of LessonLog, allowing designers to collaborate and create interactive prototypes to test and share the look and feel of the app.
